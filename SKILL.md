@@ -13,27 +13,27 @@ Full CLI for **Revolut Business** — accounts, transactions, payments, FX, expo
 
 ## Setup
 
-### Prerequisites
-- Python 3.10+
-- `pip install PyJWT cryptography`
+### Interactive Setup Wizard (recommended)
+```bash
+python3 {baseDir}/scripts/setup.py
+```
+Walks you through everything: key generation, Revolut certificate upload, OAuth callback, authorization.
+
+### Manual Setup
+- Python 3.10+, `pip install PyJWT cryptography`
 - Revolut Business account with API certificate
+- See [README](https://github.com/christianhaberl/revolut-openclaw-skill) for detailed step-by-step guide
 
 ### Credentials
 Stored in `~/.clawdbot/revolut/`:
 - `private.pem` — RSA private key (for JWT signing)
 - `certificate.pem` — X509 cert (uploaded to Revolut)
 - `tokens.json` — OAuth tokens (auto-managed)
+- `config.json` — client ID, domain, redirect URI
 
 Environment variables (in `.env`):
 - `REVOLUT_CLIENT_ID` — from Revolut API settings
 - `REVOLUT_ISS_DOMAIN` — your redirect URI domain (without https://)
-
-### Initial Auth
-```bash
-python3 {baseDir}/scripts/revolut.py auth
-# Opens URL → authorize → paste code:
-python3 {baseDir}/scripts/revolut.py auth --code <CODE>
-```
 
 ## Commands
 
